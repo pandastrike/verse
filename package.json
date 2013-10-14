@@ -1,0 +1,25 @@
+{
+  "name": "verse",
+  "version": "0.3.0",
+  "description": "Forward-looking Stylus CSS framework for CSS3/HTML5.",
+  "scripts": {
+    "server": "node_modules/harp/bin/harp server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pandastrike/verse.git"
+  },
+  "gitHead": "a0c4272d406b6b1047c5a8a66d54c313cba33fe2",
+  "keywords": [
+    "CSS",
+    "HTML5",
+    "Stylus",
+    "Framework"
+  ],
+  "author": "Dan Yoder <dan@pandastrike.com>",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "harp": "~0.9.3"
+  }
+}

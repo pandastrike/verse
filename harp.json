@@ -1,0 +1,9 @@
+{
+  "domains": [""],
+  "globals": {
+    "site": {
+      "title": "Verse",
+      "url": "http://verse.pandastrike.com"
+    }
+  }
+}

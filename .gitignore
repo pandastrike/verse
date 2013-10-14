@@ -1,0 +1,12 @@
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.tmp
+tmp/
+logs/
+node_modules/
+www/
+.DS_Store

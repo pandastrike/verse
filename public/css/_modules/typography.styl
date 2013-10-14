@@ -1,0 +1,60 @@
+rhythm(_ratio, _line-height)
+  font-size (_line-height * _ratio)
+  line-height _line-height
+
+heading(size)
+  font-weight: bold
+  margin: 0
+  padding: 0
+  margin-bottom: 1rem
+  margin-top: 2rem
+  rhythm 0.9 unit(size,'rem')
+
+
+subtitle()
+  font-weight: normal
+  margin-top: -1rem
+
+html
+  font-size grid-unit
+
+for n in 1..5
+  h{n}
+    heading (7 - n)
+
+  if n < 6
+    article h{n}
+      heading (6 - n)
+
+  if n < 4 
+    aside article h{n}
+      heading (4 - n)
+  
+  if n > 1
+    h{n - 1} + h{n}
+      subtitle()
+
+ul, li
+  margin 0
+  padding 0
+
+li
+  margin-left 1em
+
+article
+  p, li
+    rhythm 0.6 3rem
+
+aside article
+  p, li
+    rhythm 0.6 2rem
+
+
+code
+  color lighten(green, 10%)
+
+pre
+  background-color lighten(black, 5%)
+  padding 1rem
+  rhythm 0.8 2rem
+  border-radius 0.5rem
