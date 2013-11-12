@@ -37,8 +37,13 @@ for n in 1..5
   p + h{n}
     margin-top 2rem
 
-p
+p, li
+  copy-font()
   margin-bottom 1rem
+
+ul
+  padding-left 2em
+
 
 article
   p, li
@@ -46,14 +51,44 @@ article
 
 aside article
   p, li
-    rhythm 0.6 2rem
+    rhythm 0.7 2rem
 
 
 code
-  color lighten(green, 10%)
+  background-color lighten(silver, 75%)
+  color lighten(black, 25%)
+  mono-font()
+  font-size 90%
+  padding-left: 0.5rem
+  padding-right: 0.5rem
+  padding-top: 0.1rem
+  border-radius 0.3rem
 
 pre
-  background-color lighten(black, 5%)
+  background-color lighten(silver, 75%)
   padding 1rem
-  rhythm 0.8 2rem
   border-radius 0.5rem
+
+pre code
+  background-color inherit
+  border none
+  rhythm 0.6 2rem
+  padding-top: 0
+
+blockquote
+  margin-left: 0rem
+  margin-bottom: 3rem
+  padding-left: 2rem
+  border-left: 3px solid silver
+
+blockquote p
+  rhythm 0.8 2rem
+
+// code
+//   color lighten(green, 10%)
+
+// pre
+//   background-color lighten(black, 5%)
+//   padding 1rem
+//   rhythm 0.8 2rem
+//   border-radius 0.5rem

@@ -1,3 +1,4 @@
+@import "_fonts"
 @import "_theme"
 @import "_modules"
 
@@ -9,14 +10,24 @@ a, a:visited, a:hover
 
 header 
   margin-bottom 4rem
+  background black
+  color white
+  padding 2rem
+  border-radius 0.5rem
 
   h1
+    font-family "Wireframe"
     rhythm 1 4rem
 
     a
       border-bottom none
 
+      &:hover
+        border-bottom none
+
+
     + h2
+      font-family "Montserrat"
       rhythm 1 3rem
 
 html
