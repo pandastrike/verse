@@ -1,32 +1,33 @@
-cell()
+pct(n)
+  (floor(n * 100, 2))%
+
+rem2px(n)
+  (n * grid-unit)px
+
+cell(width=1, gutter=true)
   display inline-block
-  padding-right 2rem
+  
+  if gutter
+    margin-right 4rem
+    // escaping the operator tells stylus not to try
+    // and do the math for us ...
+    width calc(pct(width) \- 4rem)
+  else
+    margin-right 0
+    width pct(width)
 
 well()
-  padding 1rem
-  margin-bottom 1rem
-  background silver
-  border-radius 0.25rem
+  padding 2rem
+  background lighten(silver, 80%)
+  border-radius 0.5rem
+
+center()
+  // we're assuming here that we're the only thing on this "line"
+  display block
+  margin-left auto
+  margin-right auto 
+
 
 html *
   box-sizing border-box
-
-body
-  width floor((780px / grid-unit)rem)
-  margin auto
-
-main
-  cell()
-  width (2/3 * 100)%
-
-aside
-  cell()
-  width (1/3 * 100)%
-  vertical-align top
-
-footer
-  margin-top 1rem
-  border-top 1px solid silver
-  padding-top 1rem
-  text-align center
-
+  transition all 0.25s ease

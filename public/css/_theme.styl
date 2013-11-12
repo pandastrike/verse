@@ -1,0 +1,46 @@
+/*
+
+  The theme file determines a number of basic variables for colors,
+  sizes, etc., that are used throughout the Verse framework.
+
+*/
+
+// TODO: base this on media queries
+body-width = 1080px
+body-height = 100%
+
+// The grid-unit determines the size of the grid squares we're trying to
+// align against. 
+grid-unit = 9px
+
+// 
+// Colors
+// 
+
+colors-link-foreground = desaturate(lighten(green, 15%), 50%)
+colors-link-background = rgba(white, 0)
+colors-success-foreground = white
+colors-success-background = desaturate(lighten(green, 15%), 50%)
+colors-warn-foreground = white
+colors-warn-background = desaturate(gold, 50%)
+colors-alert-foreground = white
+colors-alert-background = desaturate(red, 50%)
+colors-form-foreground = darken(gray, 50%)
+colors-form-background = lighten(desaturate(green, 50%), 90%)
+colors-sidebar-background = desaturate(lighten(blue + green, 10%), 75%)
+colors-sidebar-foreground = lighten(colors-sidebar-background, 95%)
+
+// 
+// Fonts
+// 
+
+body-font-family = sans-serif
+copy-font-family = serif
+mono-font-family = monospace
+
+body-font()
+  font-family body-font-family
+copy-font()
+  font-family copy-font-family
+mono-font()
+  font-family mono-font-family

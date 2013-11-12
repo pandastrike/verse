@@ -7,8 +7,8 @@ heading(size)
   margin: 0
   padding: 0
   margin-bottom: 1rem
-  margin-top: 2rem
   rhythm 0.9 unit(size,'rem')
+  body-font()
 
 
 subtitle()
@@ -34,12 +34,11 @@ for n in 1..5
     h{n - 1} + h{n}
       subtitle()
 
-ul, li
-  margin 0
-  padding 0
+  p + h{n}
+    margin-top 2rem
 
-li
-  margin-left 1em
+p
+  margin-bottom 1rem
 
 article
   p, li

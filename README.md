@@ -4,12 +4,22 @@ Verse is a forward-looking CSS framework. It emphasizes simple, flat, and respon
 
 # Installation
 
-Right now, the only way to install Verse is to git clone it and then copy the Stylus files into your project.
+Right now, you basically have to copy the Stylus code into your directory. You can install via NPM:
+
+    npm install verse
+
+in which case you have to copy the files from within the module directory. Or you can `git clone`:
 
     git clone https://github.com/pandastrike/verse.git
 
-You can actually see the framework in action by loading it as a Web site. Just `cd` into the project directory and run:
+The Stylus code is in `public/css/_modules`.
 
-    npm install && npm run-script server
+You can see the framework in action by loading it as a Web site. Just `cd` into the module or project directory and run:
+
+    npm run-script server
 
 Point your browser to `http://localhost:9000` and you can see the documentation for Verse, using the Verse CSS.
+
+# Documentation
+
+The documentation is itself in the Web site.

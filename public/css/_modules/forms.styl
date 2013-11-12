@@ -1,0 +1,89 @@
+form
+  border 1px solid silver
+  border-radius 0.25rem
+  padding 2rem
+  body-font()
+  text-align left
+  highlight(colors-form-foreground, colors-form-background)
+
+
+  h1
+    margin-bottom 3rem
+    rhythm 0.75 3rem
+    text-align left
+
+  fieldset
+    border-radius 0.5rem
+    padding 2rem 1rem 1rem 1rem
+    margin-bottom 2rem
+    highlight(colors-form-foreground, darken(colors-form-background, 10%))
+
+
+    legend
+      padding 1rem
+      body-font()
+      text-align left
+      rhythm 0.75 2rem
+
+    dl
+      width 100%
+
+      dt
+        display inline-block
+        width 14rem
+        margin-right 1rem
+        padding 1rem
+        margin-bottom 2rem
+        text-align right
+        rhythm 0.75 2rem
+        vertical-align middle
+
+        dfn
+          font-style normal
+
+      dd
+        margin 0
+        padding 0
+        display inline-block
+        width calc(100% \- 16rem)
+        margin-bottom 2rem
+        vertical-align middle
+
+        input, select, textarea
+          display inline-block
+          width 100%
+          padding 0.5rem
+          border 1px solid silver
+          border-radius 0.5rem
+          text-align left
+          mono-font()
+          rhythm 0.75 3rem
+
+          &:hover
+            background lighten(colors-form-background, 50%)
+
+        input[type='radio']
+          width 3rem
+
+        input[type='radio'] + label
+          width 90%
+          padding 0
+          rhythm 0.75 3rem
+
+        textarea 
+          height 15rem
+
+        select
+          box-shadow none
+          -webkit-appearance none
+
+  .panel
+    margin-top 1rem
+    text-align right
+
+    a
+      display inline-block
+      margin-right 1rem
+
+      &:last-child
+        margin-right 0
