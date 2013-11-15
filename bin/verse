@@ -1,36 +1,45 @@
 #!/usr/bin/env coffee
-{stdout,stderr,exit,argv} = process
+{stdout, stderr, exit, argv} = process
 log = (string) -> stdout.write( string + "\n" )
 abort = (string) -> stderr.write( string + "\n" ); exit(-1)
 
-[_,_,command,argv...] = argv
+sync = (source, destination) ->
+  unless source?
+    abort "Please specify source and destination directories"
+  unless destination?
+    abort "Please specify a destination directory"
+
+  {resolve, join} = require "path"
+  {exists} = require "fairmont"
+  system = require "node-system"
+
+  to = resolve(join(destination, "public", "css", "_modules"))
+  abort "Destination does not exist: #{to}" unless exists(to)
+
+  from = resolve(join(source, "public", "css", "_modules"))
+  abort "Source does not have expected directory: #{from}" unless exists(from)
+
+  log "Syncing #{to} from #{from} ..."
+
+  try
+    system("rsync -avz #{from}/ #{to}/")
+  catch error
+    abort error
+
+  log "Sync completed."
+
+
+[_, _, command, argv...] = argv
 
 abort "Please specify a subcommand" unless command?
 
-Commands = 
+Commands =
 
-  update: (directory) ->
+  pull: (directory) ->
+    sync "#{__dirname}/../", directory
 
-    {exists} = require "fairmont"
-    system = require "node-system"
-    {resolve, join} = require "path"
-
-    abort "Please specify a destination directory to update" unless directory?
-
-    to = resolve(directory)
-
-    abort "Directory does not exist: #{to}" unless exists(directory)
-
-    from = resolve(join(__dirname, "..", "public", "css", "_modules"))
-
-    log "Updating #{to} from #{from} ..."
-
-    try
-      system("rsync -avz #{from}/ #{to}/")
-    catch error
-      abort error
-
-    log "Update competed."
+  push: (source, destination) ->
+    sync source, destination
 
 abort "Invalid subcommand: #{command}" unless Commands[command]?
 Commands[command](argv...)
