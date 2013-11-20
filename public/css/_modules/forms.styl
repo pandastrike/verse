@@ -1,21 +1,21 @@
 form
   border 1px solid silver
   border-radius 0.25rem
-  padding 2rem
+  padding 4rem
   body-font()
   text-align left
   highlight(colors-form-foreground, colors-form-background)
 
 
-  h1
-    margin-bottom 3rem
-    rhythm 0.75 3rem
-    text-align left
+  // h1
+  //   margin-bottom 3rem
+  //   rhythm 0.75 3rem
+  //   text-align left
 
   fieldset
     border-radius 0.5rem
     padding 2rem 1rem 1rem 1rem
-    margin-bottom 2rem
+    margin 4rem 0
     highlight(colors-form-foreground, darken(colors-form-background, 10%))
 
 
@@ -27,6 +27,7 @@ form
 
     dl
       width 100%
+
 
       dt
         display inline-block
@@ -49,10 +50,20 @@ form
         margin-bottom 2rem
         vertical-align middle
 
+        p.form-error
+          display none
+          color colors-alert-foreground
+          background colors-alert-background
+          body-font()
+          border-radius 0.5rem
+          padding 1rem
+          rhythm 0.75 2rem
+
+
         input, select, textarea
           display inline-block
           width 100%
-          padding 0.5rem
+          padding 1rem
           border 1px solid silver
           border-radius 0.5rem
           text-align left
@@ -82,6 +93,8 @@ form
     text-align right
 
     a
+      button("larger")
+      success()
       display inline-block
       margin-right 1rem
 

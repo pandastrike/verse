@@ -11,7 +11,7 @@ cell(width=1, gutter=true)
     margin-right 4rem
     // escaping the operator tells stylus not to try
     // and do the math for us ...
-    width calc(pct(width) \- 4rem)
+    width "calc(%s - 4rem)" % pct(width)
   else
     margin-right 0
     width pct(width)
@@ -30,4 +30,3 @@ center()
 
 html *
   box-sizing border-box
-  transition all 0.25s ease

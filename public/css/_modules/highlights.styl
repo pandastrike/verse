@@ -7,11 +7,20 @@ highlight(fg, bg)
     color lighten(fg, 15%)  !important
     background lighten(bg, 15%)  !important
 
-.success
+success()
   highlight(colors-success-foreground, colors-success-background)
 
-.warn
+warn()
   highlight(colors-warn-foreground, colors-warn-background)
 
-.alert
+alert()
   highlight(colors-alert-foreground, colors-alert-background)
+
+.success
+  success()
+
+.warn
+  warn()
+
+.alert
+  alert()
