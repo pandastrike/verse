@@ -8,12 +8,12 @@ wireframe(orient="right")
     padding-top 2rem
     padding-bottom 2rem
     if orient is "right"
-      left calc(100% \+ 5rem)
+      left unquote("calc(100% + 5rem)")
       padding-left 2rem
       border-left 1px solid silver
       text-align left
     else
-      left calc(-5rem \- @width)
+      left "calc(-5rem - %s)" % @width
       padding-right 2rem
       border-right 1px solid silver
       text-align right
