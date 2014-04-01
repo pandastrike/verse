@@ -1,21 +1,22 @@
 !!!
-head
-  != partial("/_partials/head")
-body
-  header
-    h1: a(href="/") Verse
-    h2 A Stylus CSS Framework for HTML5
+html
+  head
+    != partial("/_partials/head")
+  body
+    header
+      h1: a(href="/") Verse
+      h2 A Stylus CSS Framework for HTML5
 
-  main
-    article
-      != yield
-      
-  aside
-    article
-      != partial("/_partials/toc")
+    main
+      article
+        != yield
+        
+    aside
+      article
+        != partial("/_partials/toc")
 
-    article
-      != partial("/_partials/github")
+      article
+        != partial("/_partials/github")
 
-  footer
-    != partial("/_partials/footer")
+    footer
+      != partial("/_partials/footer")

@@ -18,7 +18,11 @@
   "dependencies": {
     "harp": "~0.9.3",
     "fairmont": "~0.7.0",
-    "node-system": "0.0.4"
+    "node-system": "0.0.4",
+    "stylus": "~0.42.3"
+  },
+  "scripts": {
+    "server": "./node_modules/harp/bin/harp server"
   },
   "bin": "bin/verse"
 }
