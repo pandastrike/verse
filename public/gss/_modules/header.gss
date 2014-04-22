@@ -1,0 +1,17 @@
+@if [Wwin] <= [breakpoint2] {
+  header {
+    min-width: == 4rem;
+  }
+}
+@else {
+  @if [Wwin] >= [breakpoint1] {
+    header {
+      min-width: == 10rem;
+    }
+  }
+  @else{
+    header {
+      min-width: == 6rem;
+    }
+  }
+}

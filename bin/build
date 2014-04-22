@@ -1,0 +1,86 @@
+#!/usr/bin/env coffee
+{stdout, stderr, exit, argv} = process
+{resolve, join} = require "path"
+{exists} = require "fairmont"
+fs = require "fs"
+stylus = require "stylus"
+system = require "node-system"
+
+[interpreter, script, source, destination] = argv
+
+log = (string) -> stdout.write( string + "\n" )
+abort = (string) -> stderr.write( string + "\n" ); exit(-1)
+
+
+readFilesRecursive = (from) ->
+  fileContent = []
+  dirContent = []
+  files = fs.readdirSync(from)
+  for file in files
+    file = "#{from}/#{file}"
+    stat = fs.statSync(file)
+    if stat and stat.isDirectory()
+      dirContent = dirContent.concat(readFilesRecursive(file))
+    else
+      fileContent.push(fs.readFileSync(file))
+  fileContent.concat(dirContent)
+
+buildGSS = (source, destination) ->
+  from = resolve __dirname, "..", source, "gss"
+  to = resolve __dirname, "..", destination, "gss"
+  fs.mkdirSync to unless exists(to)
+
+  abort "Source does not exist: #{from}" unless exists(from)
+  abort "Destination does not exist: #{to}" unless exists(to)
+
+  log "Generating verse.gss from input files in #{from} ..."
+
+  gss = readFilesRecursive("#{from}").join("\n\n\n")
+
+  fs.writeFileSync "#{to}/verse.gss", gss
+
+copyAssets = (source, destination) ->
+  from = resolve __dirname, "..", source, "fonts"
+  to = resolve __dirname, "..", destination, "fonts"
+  fs.mkdirSync to unless exists(to)
+
+  abort "Source does not exist: #{from}" unless exists(from)
+  abort "Destination does not exist: #{to}" unless exists(to)
+
+  log "Copying assets from input files in #{from} ..."
+
+  system "cp -rf #{from}/* #{to}"
+
+buildCSS = (source, destination, callback) ->
+  from = resolve __dirname, "..", source, "css"
+  to = resolve __dirname, "..", destination, "css"
+  fs.mkdirSync to unless exists(to)
+
+  abort "Source does not exist: #{from}" unless exists(from)
+  abort "Destination does not exist: #{to}" unless exists(to)
+
+  log "Generating verse.css from input files in #{from} ..."
+
+  stylusFile = "#{from}/verse.styl"
+  content = fs.readFileSync stylusFile
+  stylusOptions = filename: stylusFile, _imports: []
+  stylus(content.toString(), stylusOptions).render (err, css) ->
+    abort err if err?
+    fs.writeFileSync "#{to}/verse.css", css
+    callback()
+
+run = ->
+  source = "public" unless source?
+  destination = "build" unless destination?
+
+  try
+    log ""
+    buildGSS source, destination
+    copyAssets source, destination
+    buildCSS source, destination, ->
+      log "Build completed"
+      log ""
+  catch error
+    abort error
+
+run()

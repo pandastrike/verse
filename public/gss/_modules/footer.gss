@@ -1,0 +1,22 @@
+@if [Wwin] <= [breakpoint2] {
+  footer {
+    min-width: == 2rem;
+    font-weight: == 400;
+    font-size: == 6;
+  }
+} 
+@else {
+  @if [Wwin] >= [breakpoint1] {
+    footer {
+      min-width: == 4rem;
+      font-size: == 16;
+    }
+  }
+  @else {
+    footer {
+      min-width: == 3rem;
+      font-size: == 10;
+      font-weight: == 700;
+    }
+  }
+}
