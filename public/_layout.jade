@@ -5,18 +5,15 @@ html
   body
     header
       h1: a(href="/") Verse
-      h2 A Stylus CSS Framework for HTML5
-
+      h2 
+        blurb Forward Looking CSS framework
     main
       article
-        != yield
-        
+        != yield     
     aside
       article
         != partial("/_partials/toc")
-
       article
         != partial("/_partials/github")
-
-    footer
+    footer 
       != partial("/_partials/footer")

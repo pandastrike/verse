@@ -3,6 +3,7 @@
 {resolve, join} = require "path"
 {exists} = require "fairmont"
 fs = require "fs"
+harp = require "harp"
 stylus = require "stylus"
 system = require "node-system"
 
@@ -25,23 +26,52 @@ readFilesRecursive = (from) ->
       fileContent.push(fs.readFileSync(file))
   fileContent.concat(dirContent)
 
-buildGSS = (source, destination) ->
-  from = resolve __dirname, "..", source, "gss"
-  to = resolve __dirname, "..", destination, "gss"
+deleteDirRecursive = (path) ->
+    if fs.existsSync(path)
+      files = fs.readdirSync(path);
+      for file in files
+        curPath = path + "/" + file
+        if fs.lstatSync(curPath).isDirectory()
+          deleteDirRecursive(curPath)
+        else
+          fs.unlinkSync(curPath)
+      fs.rmdirSync(path)
+
+buildSite = (source, destination, callback) ->
+  from = resolve __dirname, "..", source
+  to = resolve __dirname, "..", destination, "www"
   fs.mkdirSync to unless exists(to)
 
   abort "Source does not exist: #{from}" unless exists(from)
   abort "Destination does not exist: #{to}" unless exists(to)
+
+  log "Generating site from input files in #{from} ..."
+
+  harp.compile from, to, (err) ->
+    abort err if err?
+    callback()
+
+buildGSS = (source, destination) ->
+  from = resolve __dirname, "..", source, "public/gss"
+  to = resolve __dirname, "..", destination, "export/gss"
+  wwwGSSPath = resolve __dirname, "..", destination, "www/gss"
+  fs.mkdirSync to unless exists(to)
+  fs.mkdirSync wwwGSSPath unless exists(wwwGSSPath)
+
+  abort "Source does not exist: #{from}" unless exists(from)
+  abort "Destination does not exist: #{to}" unless exists(to)
+  abort "Destination does not exist: #{wwwGSSPath}" unless exists(wwwGSSPath)
 
   log "Generating verse.gss from input files in #{from} ..."
 
   gss = readFilesRecursive("#{from}").join("\n\n\n")
 
   fs.writeFileSync "#{to}/verse.gss", gss
+  fs.writeFileSync "#{wwwGSSPath}/verse.gss", gss
 
 copyAssets = (source, destination) ->
-  from = resolve __dirname, "..", source, "fonts"
-  to = resolve __dirname, "..", destination, "fonts"
+  from = resolve __dirname, "..", source, "public/fonts"
+  to = resolve __dirname, "..", destination, "export/fonts"
   fs.mkdirSync to unless exists(to)
 
   abort "Source does not exist: #{from}" unless exists(from)
@@ -52,8 +82,8 @@ copyAssets = (source, destination) ->
   system "cp -rf #{from}/* #{to}"
 
 buildCSS = (source, destination, callback) ->
-  from = resolve __dirname, "..", source, "css"
-  to = resolve __dirname, "..", destination, "css"
+  from = resolve __dirname, "..", source, "public/css"
+  to = resolve __dirname, "..", destination, "export/css"
   fs.mkdirSync to unless exists(to)
 
   abort "Source does not exist: #{from}" unless exists(from)
@@ -70,16 +100,25 @@ buildCSS = (source, destination, callback) ->
     callback()
 
 run = ->
-  source = "public" unless source?
+  source = "." unless source?
   destination = "build" unless destination?
+  
+  wwwDir = resolve __dirname, "..", destination, "www"
+  deleteDirRecursive wwwDir
+  fs.mkdirSync wwwDir unless exists wwwDir
+
+  exportDir = resolve __dirname, "..", destination, "export"
+  deleteDirRecursive exportDir
+  fs.mkdirSync exportDir unless exists exportDir
 
   try
     log ""
-    buildGSS source, destination
-    copyAssets source, destination
-    buildCSS source, destination, ->
-      log "Build completed"
-      log ""
+    buildSite source, destination, ->
+      buildGSS source, destination
+      copyAssets source, destination
+      buildCSS source, destination, ->
+        log "Build completed"
+        log ""
   catch error
     abort error
 

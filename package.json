@@ -1,6 +1,6 @@
 {
   "name": "verse",
-  "version": "0.4.1",
+  "version": "0.5.1",
   "description": "Forward-looking Stylus CSS framework for CSS3/HTML5.",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "stylus": "~0.42.3"
   },
   "scripts": {
-    "server": "./node_modules/harp/bin/harp server"
+    "server": "bin/build-verse && ./node_modules/harp/bin/harp server build/www"
   },
   "bin": "bin/verse"
 }

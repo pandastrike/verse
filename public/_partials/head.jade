@@ -1,4 +1,8 @@
 meta(charset="utf-8")
 meta(name="viewport", content="width=device-width, initial-scale=1.0")
 title #{site.title}
-link(rel="stylesheet",href="/css/verse.css")
+link(rel='stylesheet', type='text/css', href='/css/verse.css')
+link(rel='stylesheet', type='text/gss', href='/gss/verse.gss')
+script.
+  GSS_CONFIG = {useWorker: false,debug: false};
+script(src="http://gridstylesheets.org/bower_components/gss/dist/gss.js")
