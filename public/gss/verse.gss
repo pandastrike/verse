@@ -1,44 +1,31 @@
 [Wwin] == ::window[width] !require;
 [Hwin] == ::window[height] !require;
 [breakpoint1] == 900 !require;
+[breakpoint2] == 300 !require;
 [content-right] == ::window[center-x] + [max-p-width] / 2 !require;
 [content-left] == ::window[center-x] - [max-p-width] / 2 !require;
 
 @if [Wwin] >= [breakpoint1] {
-  body[width] == 1080 !require;
+  body[width] == ::window[width];
   [baseline] == 30 !require;
   [top-margin] == [baseline] * 4 !require;
   [bottom-margin] == [baseline] * 4 !require;
   [title-font-size] == 65 !require;
   [content-font-size] == 30 !require;
-} @else {
-  body[width] == ::window[width]/1.2;
+} 
+@else [Wwin] >= [breakpoint2] {
+  body[width] == ::window[width];
   [baseline] == 24 !require;
   [top-margin] == [baseline] * 3 !require;
   [bottom-margin] == [baseline] * 2 !require;
   [title-font-size] == 35 !require;
   [content-font-size] == 36 !require;
 }
-
-@if [Wwin] >= [breakpoint1] {
-  main {
-    width: == 2*body[width]/3 -[baseline] ;
-    margin-right: == [baseline] !require;
-  }
-}
 @else {
-  main {
-    width: == body[width]; 
-  }
-}
-
-@if [Wwin] >= [breakpoint1] {
-  aside {
-    width: == 1*body[width]/3;
-  }
-}
-@else {
-  aside {
-    width: == body[width]; 
-  }
+  body[width] == ::window[width];
+  [baseline] == 24 !require;
+  [top-margin] == [baseline] * 3 !require;
+  [bottom-margin] == [baseline] * 2 !require;
+  [title-font-size] == 35 !require;
+  [content-font-size] == 36 !require;
 }

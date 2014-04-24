@@ -1,15 +1,15 @@
 @if [Wwin] >= [breakpoint1] {
-  body header {
+  body main {
     width: == body[width] ;
   }
 }
 @else [Wwin] >= [breakpoint2] {
-  body header {
+  body main {
     width: == body[width]; 
   }
 }
 @else {
-  body header {
+  body main {
     width: == body[width]; 
   }
 }
