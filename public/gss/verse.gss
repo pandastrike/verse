@@ -1,31 +1,50 @@
-[Wwin] == ::window[width] !require;
-[Hwin] == ::window[height] !require;
-[breakpoint1] == 900 !require;
-[breakpoint2] == 300 !require;
-[content-right] == ::window[center-x] + [max-p-width] / 2 !require;
-[content-left] == ::window[center-x] - [max-p-width] / 2 !require;
+[Wwin] == ::window[width];
+[Hwin] == ::window[height];
+[breakpoint1] == 900;
+[breakpoint2] == 300;
+[content-right] == ::window[center-x] + [max-p-width] / 2;
+[content-left] == ::window[center-x] - [max-p-width] / 2;
 
 @if [Wwin] >= [breakpoint1] {
-  body[width] == ::window[width];
-  [baseline] == 30 !require;
-  [top-margin] == [baseline] * 4 !require;
-  [bottom-margin] == [baseline] * 4 !require;
-  [title-font-size] == 65 !require;
-  [content-font-size] == 30 !require;
-} 
+  body[width] == ::window[width] - 30;
+  [baseline] == 30;
+  [top-margin] == [baseline] * 4;
+  [bottom-margin] == [baseline] * 4;
+  [header-font-size] == 26;
+  [footer-font-size] == 16;
+  [padding-right] == 20;
+}
 @else [Wwin] >= [breakpoint2] {
-  body[width] == ::window[width];
-  [baseline] == 24 !require;
-  [top-margin] == [baseline] * 3 !require;
-  [bottom-margin] == [baseline] * 2 !require;
-  [title-font-size] == 35 !require;
-  [content-font-size] == 36 !require;
+  body[width] == ::window[width] - 20;
+  [baseline] == 24;
+  [top-margin] == [baseline] * 3;
+  [bottom-margin] == [baseline] * 2;
+  [header-font-size] == 20;
+  [footer-font-size] == 12;
 }
 @else {
   body[width] == ::window[width];
-  [baseline] == 24 !require;
-  [top-margin] == [baseline] * 3 !require;
-  [bottom-margin] == [baseline] * 2 !require;
-  [title-font-size] == 35 !require;
-  [content-font-size] == 36 !require;
+  [baseline] == 24;
+  [top-margin] == [baseline] * 3;
+  [bottom-margin] == [baseline] * 2;
+  [header-font-size] == 16;
+  [footer-font-size] == 10;
+}
+
+@if [Wwin] >= [breakpoint1] {
+  main {
+    width: == 2*::parent[width]/3; 
+    padding-right: == [padding-right] * 6;
+  }
+  aside {
+    width: == ::parent[width]/3;
+  }
+}
+@else{
+  main {
+    width: == ::parent[width]; 
+  }
+  aside {
+    width: == ::parent[width];
+  }
 }

@@ -1,16 +1,4 @@
-@if [Wwin] >= [breakpoint1] {
-  footer {
-    width: == body[width] ;
-    margin-right: == 0 !require;
-  }
-}
-@else [Wwin] >= [breakpoint2] {
-  footer {
-    width: == body[width]; 
-  }
-}
-@else {
-  footer {
-    width: == body[width]; 
-  }
+footer {
+  width: == ::parent[width];
+  font-size: == [footer-font-size];
 }
