@@ -1,4 +1,0 @@
-footer {
-  width: == ::parent[width];
-  font-size: == [footer-font-size];
-}

@@ -1,7 +1,9 @@
 {
   "name": "verse",
-  "version": "0.5.1",
+  "version": "1.0.0-alpha-01",
   "description": "Forward-looking Stylus CSS framework for CSS3/HTML5.",
+  "scripts": {},
+  "main": "src/index.coffee",
   "repository": {
     "type": "git",
     "url": "git@github.com:pandastrike/verse.git"
@@ -13,16 +15,9 @@
     "Framework"
   ],
   "author": "Dan Yoder <dan@pandastrike.com>",
-  "license": "MIT",
+  "license": "ISC",
   "readmeFilename": "README.md",
   "dependencies": {
-    "harp": "~0.9.3",
-    "fairmont": "~0.7.0",
-    "node-system": "0.0.4",
-    "stylus": "~0.42.3"
-  },
-  "scripts": {
-    "server": "bin/build-verse && ./node_modules/harp/bin/harp server build/www"
-  },
-  "bin": "bin/verse"
+    "iconfonts": "^0.7.0"
+  }
 }

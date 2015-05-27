@@ -1,1 +1,0 @@
-&copy; 2013 PandaStrike, LLC
