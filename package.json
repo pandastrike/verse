@@ -1,8 +1,15 @@
 {
   "name": "verse",
-  "version": "1.0.0-alpha-01",
+  "version": "1.0.0-alpha-02",
   "description": "Forward-looking Stylus CSS framework for CSS3/HTML5.",
-  "scripts": {},
+  "scripts": {
+    "prepublish": "coffee -o lib/ -c src/*.*coffee",
+    "test": "coffee test/index.coffee",
+    "watch": "coffee -o lib/ -cw src/*.*coffee",
+    "version": "(node_modules/.bin/json -f package.json version > VERSION)",
+    "tag": "(cat VERSION | xargs -I version git tag -am version version) && git push --tags"
+
+  },
   "main": "src/index.coffee",
   "repository": {
     "type": "git",
@@ -19,5 +26,8 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "iconfonts": "^0.7.0"
+  },
+  "devDependencies": {
+    "json": "^9.0.3"
   }
 }

@@ -1,11 +1,12 @@
 highlight(fg, bg)
-  color fg !important
-  background bg !important
-  border-color darken(bg, 25%) !important
+  color fg
+  background bg
+  border-color darken(bg, 10%)
 
   &:hover
-    color lighten(fg, 15%)  !important
-    background lighten(bg, 15%)  !important
+    color lighten(fg, 10%)
+    background lighten(bg, 10%)
+    border-color bg
 
 // success()
 //   highlight(colors-success-foreground, colors-success-background)
