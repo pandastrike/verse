@@ -1,6 +1,6 @@
 {
   "name": "verse",
-  "version": "1.0.0-alpha-02",
+  "version": "1.0.0-alpha-03",
   "description": "Forward-looking Stylus CSS framework for CSS3/HTML5.",
   "scripts": {
     "prepublish": "coffee -o lib/ -c src/*.*coffee",
@@ -24,9 +24,7 @@
   "author": "Dan Yoder <dan@pandastrike.com>",
   "license": "ISC",
   "readmeFilename": "README.md",
-  "dependencies": {
-    "iconfonts": "^0.7.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "json": "^9.0.3"
   }

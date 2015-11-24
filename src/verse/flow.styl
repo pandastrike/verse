@@ -1,0 +1,93 @@
+vertical =  top, bottom
+horizontal = left, right, justify
+
+-intersects(S, T)
+  for s in S
+    if s in T
+      return true
+
+flow()
+
+  // okay, we know this much...
+  display flex
+
+  // handle wrap or no-wrap -- straightforward
+  if wrap in arguments
+    flex-wrap wrap
+  else if no-wrap in arguments
+    flex-wrap nowrap
+
+  // okay, column orientation
+  if column in arguments
+
+    // we know this
+    flex-direction column
+
+    // set alignment properties
+    $x = align-items
+    $y = justify-content
+
+  // otherwise, assume row
+  else
+
+    // we know this
+    flex-direction row
+
+    // set alignment properties
+    $x = justify-content
+    $y = align-items
+
+  // interpret left and right accordingly
+  if left in arguments
+    {$x} flex-start
+  else if right in arguments
+    {$x} flex-end
+  else if justify in arguments
+    // for now, this is only meaningful for
+    // row-based layouts
+    if row in arguments
+      // space-around can be done for now with padding
+      justify-content space-between
+
+  // interpret top and bottom accordingly
+  if top in arguments
+    {$y} flex-start
+  else if bottom in arguments
+    {$y} flex-end
+
+  if center in arguments
+    // we know one orientation is 'center'
+    // but which one?
+
+    // start by figuring out if we have horizontal
+    // or vertical orientations already that we
+    // can use disambiguate things
+    $h = -intersects(arguments, horizontal)
+    $v = -intersects(arguments, vertical)
+
+    // if we have an horizontal orientation,
+    // but not a vertical orientation, we interpret
+    // 'center' as having a vertical orientation
+    if $h && !$v
+      {$y} center
+
+    // if have a vertical orientation,
+    // but not a horizontal one, we interpret
+    // 'center' as having a horizontal orientation
+    else if $v && !$h
+      {$x} center
+
+    // otherwise we interpret 'center' to mean
+    // that you want everything centered
+    else
+      justify-content center
+      align-items center
+
+gutters()
+  & > *
+    padding arguments
+
+well()
+  border-radius 0.5rem
+  padding 4rem
+  margin-bottom 4rem

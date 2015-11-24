@@ -1,0 +1,39 @@
+rhythm(_height, _spacing = 1/3)
+  line-height _height
+  font-size _height * (1 - _spacing)
+
+for n in 1..5
+  h{n}
+    margin-bottom: 1rem
+    rhythm (8 - n)rem, .1
+
+  if n > 1
+    h{n - 1} + h{n}
+      margin-top: -1rem
+
+  p + h{n}
+    margin-top 2rem
+
+p, li, blockquote, code
+  margin-bottom 1rem
+
+ul
+  margin 0
+  padding 0
+
+li
+  margin-left 1.25em
+  padding 0
+
+code
+  padding-left: 0.5rem
+  padding-right: 0.5rem
+  padding-top: 0.1rem
+  border-radius 0.3rem
+
+.no-wrap
+  white-space nowrap
+
+.spacer
+  display inline-block
+  width 1rem
